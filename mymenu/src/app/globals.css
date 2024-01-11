@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* variables */
+:root {
+  --container-background: #faebf4;
+}
+
+body {
+  background-color: var(--main-color);
+}
+
 /* base styles */
 body {
   background: #d894bf;
@@ -9,7 +18,25 @@ body {
 }
 
 .menu-container {
-  background: #faebf4;
+  background: var(--container-background);
   border-radius: 6px;
   padding: 20px;
+}
+
+/* nav styles */
+nav {
+  @apply pb-4
+    border-b-2 border-gray-200
+    flex items-center gap-5
+    my-10 mx-auto;
+}
+nav a,
+nav span {
+  @apply text-gray-500;
+}
+nav a:hover {
+  @apply text-black;
+}
+main nav {
+  @apply border-0;
 }
