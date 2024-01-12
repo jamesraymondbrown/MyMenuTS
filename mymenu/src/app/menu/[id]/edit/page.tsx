@@ -2,6 +2,7 @@ import React from "react";
 import { MenuItem } from "@/app/interfaces/MenuItem";
 import getMenuItems from "../../helpers";
 import EditForm from "./EditForm";
+import Delete from "./Delete";
 
 interface menuId {
   menuId: boolean;
@@ -16,10 +17,13 @@ export default async function page({ params }: { params: { id: number } }) {
     <main>
       <div className="container menu-container mx-auto lg">
         {menuItems.map((menuItem: MenuItem) => (
-          <div key={menuItem.id} className="card my-5">
-            <h3>{menuItem.name}</h3>
-            <p>{menuItem.description}</p>
-            <p>{menuItem.price}</p>
+          <div key={menuItem.id} className="flex flex-row gap-20">
+            <div>
+              <h3>{menuItem.name}</h3>
+              <p>{menuItem.description}</p>
+              <p>{menuItem.price}</p>
+            </div>
+            <Delete id={menuItem.id} />
           </div>
         ))}
         {menuItems.length === 0 && (

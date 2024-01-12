@@ -18,11 +18,12 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const menuId = req.body.menuId;
+  const name = req.body.name;
   const description = req.body.description;
   const price = req.body.price;
 
   menuItemsQueries
-    .addMenuItem(menuId, description, price)
+    .addMenuItem(menuId, name, description, price)
     .then((response) => {
       console.log("Menu Item Added:", response);
       res.send(response);

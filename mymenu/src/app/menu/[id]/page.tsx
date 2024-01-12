@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MenuItem } from "@/app/interfaces/MenuItem";
 
@@ -21,6 +22,9 @@ export default async function page({ params }: { params: { id: number } }) {
         {menuItems.length === 0 && (
           <p className="text-center">There are no items on this menu</p>
         )}
+        <Link href={`/menu/${params.id}/edit`} className="btn btn-primary">
+          Edit
+        </Link>
       </div>
     </main>
   );

@@ -2,16 +2,20 @@
 
 import React, { useState } from "react";
 import { NewMenuItem } from "@/app/interfaces/NewMenuItem";
+import { useRouter } from "next/navigation";
 
 export default function EditForm(props: { menuId: number }) {
-  const [newItem, setNewItem] = useState(false);
+  const router = useRouter();
+
+  // State variables
+  const [displayForm, setDisplayForm] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleNewItem = () => {
-    return setNewItem(!newItem);
+    return setDisplayForm(!displayForm);
   };
 
   const handleSubmit = async (e: any) => {
@@ -25,16 +29,10 @@ export default function EditForm(props: { menuId: number }) {
       price,
     };
 
-    const newMenu = {
-      user: 1,
-      name: name,
-      description: description,
-    };
-
-    const res: any = await fetch("http://localhost:8000/menus", {
+    const res: any = await fetch("http://localhost:8000/menu-items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newMenu),
+      body: JSON.stringify(newMenuItem),
     });
 
     const data = await res.json();
@@ -44,7 +42,7 @@ export default function EditForm(props: { menuId: number }) {
     if (res.status === 200) {
       // router.refresh ensures that the menu data is re-fetched, so the new ticket is visible
       router.refresh();
-      router.push(`/menu/${data.id}`);
+      router.push(`/menu/${data.menu_id}/edit`);
     }
   };
 
@@ -67,13 +65,13 @@ export default function EditForm(props: { menuId: number }) {
         </svg>
       </button>
 
-      {newItem && (
+      {displayForm && (
         <form
           onSubmit={handleSubmit}
           className="form-container w-1/2 flex-col-w-gap"
         >
           <label>
-            <span>Menu name:</span>
+            <span>Item Name:</span>
             <input
               required
               type="text"
@@ -94,6 +92,7 @@ export default function EditForm(props: { menuId: number }) {
             <input
               required
               type="number"
+              step=".01"
               onChange={(e) => setPrice(e.target.value)}
               value={price}
             />

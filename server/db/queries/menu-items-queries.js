@@ -14,7 +14,7 @@ const addMenuItem = (menu_id, name, description, price) => {
       `INSERT INTO menu_items
           (menu_id, name, description, price)
                           VALUES
-          ($1, $2, $3) RETURNING *`,
+          ($1, $2, $3, $4) RETURNING *`,
       [menu_id, name, description, price]
     )
     .then((response) => {
