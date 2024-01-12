@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-export async function getMenuItems(id: Number) {
-  const res = await fetch(`http://localhost:8000/menu-items/${id}`, {
+export async function getMenus() {
+  const res = await fetch(`http://localhost:8000/menus`, {
     next: {
       revalidate: 0,
     },

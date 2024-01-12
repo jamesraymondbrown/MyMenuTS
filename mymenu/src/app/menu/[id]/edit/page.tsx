@@ -1,6 +1,6 @@
 import React from "react";
 import { MenuItem } from "@/app/interfaces/MenuItem";
-import getMenuItems from "../../helpers";
+import { getMenuItems } from "../../helpers";
 import EditForm from "./EditForm";
 import Delete from "./Delete";
 
