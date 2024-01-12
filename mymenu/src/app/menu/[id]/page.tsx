@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { notFound } from "next/navigation";
+import { MenuItem } from "@/app/interfaces/MenuItem";
 
 // Fetching menu data from our server
 async function getMenuItems(id: Number) {
@@ -23,7 +24,7 @@ export default async function page({ params }: { params: { id: number } }) {
   return (
     <main>
       <div className="container menu-container mx-auto lg">
-        {menuItems.map((menuItem) => (
+        {menuItems.map((menuItem: MenuItem) => (
           <div key={menuItem.id} className="card my-5">
             <h3>{menuItem.name}</h3>
             <p>{menuItem.description}</p>

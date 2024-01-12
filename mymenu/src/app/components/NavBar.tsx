@@ -9,7 +9,7 @@ export default function NavBar() {
       <h1>Jimmy&apos;s Helpdesk</h1>
       <Link href="/">Dashboard</Link>
       <Link href="/menu/1">Menus</Link>
-      <Link href="/tickets/create">Create New Ticket</Link>
+      <Link href="/create">Create New Menu</Link>
     </nav>
   );
 }
