@@ -21,7 +21,7 @@ export default async function page({ params }: { params: { id: number } }) {
             <div>
               <h3>{menuItem.name}</h3>
               <p>{menuItem.description}</p>
-              <p>{menuItem.price}</p>
+              <p>${menuItem.price}</p>
             </div>
             <Delete id={menuItem.id} />
           </div>

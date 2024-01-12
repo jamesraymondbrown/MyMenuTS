@@ -8,7 +8,7 @@ export default function NavBar() {
     <nav>
       <h1>Jimmy&apos;s Helpdesk</h1>
       <Link href="/">Dashboard</Link>
-      <Link href="/menu/1">Menus</Link>
+      <Link href="/menus">Menus</Link>
       <Link href="/create">Create New Menu</Link>
     </nav>
   );

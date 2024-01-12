@@ -38,11 +38,11 @@ export default function EditForm(props: { menuId: number }) {
     const data = await res.json();
 
     console.log("data log", data);
+    console.log("data log", data);
 
-    if (res.status === 200) {
+    if (res.status < 300) {
       // router.refresh ensures that the menu data is re-fetched, so the new ticket is visible
       router.refresh();
-      router.push(`/menu/${data.menu_id}/edit`);
     }
   };
 
@@ -93,6 +93,7 @@ export default function EditForm(props: { menuId: number }) {
               required
               type="number"
               step=".01"
+              min="0"
               onChange={(e) => setPrice(e.target.value)}
               value={price}
             />
