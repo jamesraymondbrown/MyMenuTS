@@ -34,6 +34,8 @@ export default async function page({ params }: { params: { id: number } }) {
         {menuItems.length === 0 && (
           <p className="text-center">There are no items on this menu</p>
         )}
+
+        {/* Add a menu item */}
       </div>
     </main>
   );

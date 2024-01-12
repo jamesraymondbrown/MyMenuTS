@@ -25,8 +25,8 @@ export default function CreateForm(): ReactElement {
 
     const newMenu = {
       user: 1,
-      name: "New Menu Name",
-      description: "This is a new menu description",
+      name: name,
+      description: description,
     };
 
     const res: any = await fetch("http://localhost:8000/menus", {
@@ -39,17 +39,20 @@ export default function CreateForm(): ReactElement {
 
     console.log("data log", data);
 
-    // if (res.status === 200) {
-    //   // router.refresh ensures that the ticket data is re-fetched, so the new ticket is visible
-    //   router.refresh();
-    //   router.push("/menu/1");
-    // }
+    if (res.status === 200) {
+      // router.refresh ensures that the menu data is re-fetched, so the new ticket is visible
+      router.refresh();
+      router.push(`/menu/${data.id}`);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-1/2 flex-col-w-gap">
+    <form
+      onSubmit={handleSubmit}
+      className="form-container w-1/2 flex-col-w-gap"
+    >
       <label>
-        <span>Name:</span>
+        <span>Menu name:</span>
         <input
           required
           type="text"
@@ -74,7 +77,7 @@ export default function CreateForm(): ReactElement {
           value={price}
         />
       </label>
-      <button className="btn-primary" disabled={isLoading}>
+      <button className="btn btn-primary" disabled={isLoading}>
         {isLoading && <span>Adding...</span>}
         {!isLoading && <span>Add Menu</span>}
       </button>
