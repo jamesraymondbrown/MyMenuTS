@@ -40,3 +40,9 @@ nav a:hover {
 main nav {
   @apply border-0;
 }
+
+/* Container styles */
+
+.flex-col-w-gap {
+  @apply flex flex-col items-center justify-center gap-10;
+}
