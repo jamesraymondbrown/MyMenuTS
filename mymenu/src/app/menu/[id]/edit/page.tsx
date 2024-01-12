@@ -1,26 +1,17 @@
 import React from "react";
-import { notFound } from "next/navigation";
 import { MenuItem } from "@/app/interfaces/MenuItem";
+import getMenuItems from "../../helpers";
+import EditForm from "./EditForm";
 
-// Fetching menu data from our server
-async function getMenuItems(id: Number) {
-  const res = await fetch(`http://localhost:8000/menu-items/${id}`, {
-    next: {
-      revalidate: 60,
-    },
-  });
-
-  // Creates a 404 if menu id doesn't exist
-  if (!res.ok) {
-    notFound();
-  }
-
-  return res.json();
+interface menuId {
+  menuId: boolean;
 }
 
 // The React Element
 export default async function page({ params }: { params: { id: number } }) {
   const menuItems = await getMenuItems(params.id);
+  // const [newItem, setNewItem] = useState(false);
+
   return (
     <main>
       <div className="container menu-container mx-auto lg">
@@ -36,6 +27,7 @@ export default async function page({ params }: { params: { id: number } }) {
         )}
 
         {/* Add a menu item */}
+        <EditForm menuId={params.id} />
       </div>
     </main>
   );

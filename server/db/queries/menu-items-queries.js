@@ -8,14 +8,14 @@ const getMenuItems = (menu_id) => {
     });
 };
 
-const addMenuItem = (menu_id, description, price) => {
+const addMenuItem = (menu_id, name, description, price) => {
   return database
     .query(
       `INSERT INTO menu_items
-          (menu_id, description, price)
+          (menu_id, name, description, price)
                           VALUES
           ($1, $2, $3) RETURNING *`,
-      [menu_id, description, price]
+      [menu_id, name, description, price]
     )
     .then((response) => {
       return response.rows[0];
