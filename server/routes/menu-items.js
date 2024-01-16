@@ -35,11 +35,12 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const id = req.body.id;
+  const name = req.body.name;
   const description = req.body.description;
   const price = req.body.price;
 
   menuItemsQueries
-    .updateMenuItem(description, price, id)
+    .updateMenuItem(name, description, price, id)
     .then((response) => {
       console.log("Menu Item Updated:", response);
       res.send(response);

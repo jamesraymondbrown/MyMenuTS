@@ -1,8 +1,9 @@
 import React from "react";
 import { MenuItem } from "@/app/interfaces/MenuItem";
 import { getMenuItems } from "../../helpers";
-import EditForm from "./EditForm";
+import EditItem from "./EditItem";
 import Delete from "./Delete";
+import AddItemForm from "./AddItemForm";
 
 interface menuId {
   menuId: boolean;
@@ -23,6 +24,12 @@ export default async function page({ params }: { params: { id: number } }) {
               <p>{menuItem.description}</p>
               <p>${menuItem.price}</p>
             </div>
+            <EditItem
+              id={menuItem.id}
+              name={menuItem.name}
+              description={menuItem.description}
+              price={menuItem.price}
+            />
             <Delete id={menuItem.id} />
           </div>
         ))}
@@ -31,7 +38,7 @@ export default async function page({ params }: { params: { id: number } }) {
         )}
 
         {/* Add a menu item */}
-        <EditForm menuId={params.id} />
+        <AddItemForm menuId={params.id} />
       </div>
     </main>
   );

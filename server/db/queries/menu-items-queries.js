@@ -22,11 +22,11 @@ const addMenuItem = (menu_id, name, description, price) => {
     });
 };
 
-const updateMenuItem = (description, price, id) => {
+const updateMenuItem = (name, description, price, id) => {
   return database
     .query(
-      `UPDATE menu_items SET description = $1, price = $2 WHERE id = $3 RETURNING *`,
-      [description, price, id]
+      `UPDATE menu_items SET name = $1, description = $2, price = $3 WHERE id = $4 RETURNING *`,
+      [name, description, price, id]
     )
     .then((response) => {
       return response.rows[0];
