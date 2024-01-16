@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MenuItem } from "@/app/interfaces/MenuItem";
+import QrCode from "./QrCode";
 
 // Helpers
 import { getMenuItems } from "../helpers";
@@ -26,6 +27,7 @@ export default async function page({ params }: { params: { id: number } }) {
           Edit
         </Link>
       </div>
+      <QrCode menuId={params.id} />
     </main>
   );
 }
