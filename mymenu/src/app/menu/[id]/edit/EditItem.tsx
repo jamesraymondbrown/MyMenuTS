@@ -19,7 +19,6 @@ export default function EditItem(props: {
   const [price, setPrice] = useState(props.price);
 
   const toggleForm = () => {
-    console.log("snail");
     return setDisplayForm(!displayForm);
   };
 
@@ -34,8 +33,6 @@ export default function EditItem(props: {
       id: props.id,
     };
 
-    console.log("json", JSON.stringify(EditedMenuItem));
-
     const res: any = await fetch(
       `http://localhost:8000/menu-items/${props.id}`,
       {
@@ -47,15 +44,14 @@ export default function EditItem(props: {
 
     const data = await res.json();
 
-    console.log("data log", data);
-    console.log("status", res.status);
-
     if (res.status < 300) {
       // router.refresh ensures that the menu data is re-fetched, so the new ticket is visible
       router.refresh();
+      toggleForm();
+      setIsLoading(false);
+    } else {
+      console.log("status", res.status);
     }
-
-    setIsLoading(false);
   };
 
   return (

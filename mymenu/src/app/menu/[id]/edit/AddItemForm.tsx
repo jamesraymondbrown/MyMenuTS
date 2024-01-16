@@ -7,14 +7,13 @@ import { useRouter } from "next/navigation";
 export default function AddItemForm(props: { menuId: number }) {
   const router = useRouter();
 
-  // State variables
   const [displayForm, setDisplayForm] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleNewItem = () => {
+  const toggleForm = () => {
     return setDisplayForm(!displayForm);
   };
 
@@ -42,12 +41,16 @@ export default function AddItemForm(props: { menuId: number }) {
     if (res.status < 300) {
       // router.refresh ensures that the menu data is re-fetched, so the new ticket is visible
       router.refresh();
+      toggleForm();
+      setIsLoading(false);
+    } else {
+      console.log("status", res.status);
     }
   };
 
   return (
     <>
-      <button onClick={toggleNewItem} className="btn btn-circle btn-outline">
+      <button onClick={toggleForm} className="btn btn-circle btn-outline">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
