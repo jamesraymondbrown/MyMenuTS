@@ -23,8 +23,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <SessionProvider session={session}>
+          <NavBar />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
