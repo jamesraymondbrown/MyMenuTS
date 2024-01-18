@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Logo from "./dojo-logo.png";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function NavBar() {
   return (
