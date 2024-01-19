@@ -6,6 +6,7 @@ import "./globals.css";
 // Components
 import NavBar from "./components/NavBar";
 import SessionProvider from "./components/SessionProvider";
+import TestingSession from "./components/TestingSession";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <NavBar />
+          <TestingSession />
           {children}
         </SessionProvider>
       </body>
